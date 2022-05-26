@@ -18,25 +18,24 @@ public:
         */
         int n = s.size();
         
-        vector<int>dp(n+1);
-        for(int start = n; start >= 0; start--){
-            if(start >= n){
-                dp[start] = 1;
-                continue;
-            }
+        int onePos = s[n-1] == '0' ? 0 : 1;
+        int twoPos = 1;
+        int c;
+        for(int start = n-2; start >= 0; start--){
+            
             if(s[start] == '0'){
-                dp[start] = 0;
+                c = 0;
+                twoPos = onePos;
+                onePos = c;
                 continue;
             }
-            if(start == n-1){
-                dp[start] = 1;
-                continue;
-            }
-            int oneD = dp[start + 1];
-            int twoD = start < (n-1) && ((s[start]-'0')*10 + (s[start + 1] - '0')) <= 26 ? dp[start + 2] : 0;
-            dp[start] = oneD + twoD;
+            int oneD = onePos;
+            int twoD = start < (n-1) && ((s[start]-'0')*10 + (s[start + 1] - '0')) <= 26 ? twoPos : 0;
+            c = oneD + twoD;
+            twoPos = onePos;
+            onePos = c;
         }
-        return dp[0];
+        return onePos;
         
     }
 };
