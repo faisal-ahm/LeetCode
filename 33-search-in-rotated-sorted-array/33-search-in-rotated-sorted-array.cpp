@@ -2,21 +2,21 @@ class Solution {
 public:
     int getPeak(vector<int>&nums){
         int start = 0, end = nums.size()-1;
-        if(nums[end] > nums[start]){
-            return end;
-        }
-        while(start < end){
+        while(start <= end){
             int mid = start + (end - start)/2;
-            if(nums[mid] > nums[mid+1]){
+            if(mid < end && nums[mid] > nums[mid + 1]){
                 return mid;
             }
-            if(nums[mid] > nums[start]){
-                start = mid + 1;
+            if(mid > start && nums[mid] < nums[mid-1]){
+                return mid-1;
+            }
+            if(nums[mid] <= nums[start]){
+                end = mid-1;
             }else{
-                end = mid;
+                start = mid;
             }
         }
-        return start;
+        return -1;
     }
     int search(vector<int>& nums, int target) {
         int pivot = getPeak(nums);
