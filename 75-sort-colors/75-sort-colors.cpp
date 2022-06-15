@@ -3,7 +3,7 @@ public:
     void sortColors(vector<int>& nums) {
         int n = nums.size();
         int i = 0, j = n-1, c = 0;
-        while(c <= j && i < j){
+        while(c <= j){
             if(nums[c] == 0){
                 nums[c++] = nums[i];
                 nums[i++] = 0;
