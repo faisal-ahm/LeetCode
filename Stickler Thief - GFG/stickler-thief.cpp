@@ -11,18 +11,21 @@ class Solution
     int FindMaxSum(int arr[], int n)
     {
         // Your code here
-        vector<int> DP(n,0);
-        
-        DP[0]=arr[0];
-        DP[1]=max(arr[0], arr[1]);
+        if(n == 1){
+            return arr[0];
+        }
+        int a =arr[0];
+        int b =max(arr[0], arr[1]);
         
         for(int i=2;i<n;i++)
         {
-            DP[i]=max(DP[i-1],DP[i-2]+arr[i]);
+            int c = max(b,a+arr[i]);
+            a = b;
+            b = c;
             
         }
         
-        return DP[n-1];
+        return b;
     }
 };
 
