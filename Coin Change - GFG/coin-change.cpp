@@ -5,18 +5,17 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
   public:
-    #define ll long long
-long long int count(int s[], int m, int n) {
-    vector<ll>dp(n+1, 0);
-    dp[0] = 1;
-    for (ll i = 0; i < m; ++i) {
-        for (ll k = 1; k <= n; ++k) {
-            if (s[i] > k) continue;
-            dp[k] += dp[k-s[i]];
+  #define ll long long
+    long long int count(int S[], int m, int n) {
+        vector<ll>dp(n+1,0);
+        dp[0] = 1;
+        for(ll i = 0; i < m; i++){
+            for(ll j = 1; j <= n; j++){
+                if(S[i] <= j)dp[j] += dp[j-S[i]];
+            }
         }
+        return dp[n];
     }
-    return dp[n];
-}
     
 };
 
