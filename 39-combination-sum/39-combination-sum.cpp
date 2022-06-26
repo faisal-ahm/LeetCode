@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    void helper(vector<int>& candidates, int target, int currSum, int currIndex, vector<int>currComb, vector<vector<int>>&ans){
+    void helper(vector<int>& candidates, int target, int currSum, int currIndex, vector<int>&currComb, vector<vector<int>>&ans){
         if(currSum > target || currIndex >= candidates.size()){
             return;
         }
