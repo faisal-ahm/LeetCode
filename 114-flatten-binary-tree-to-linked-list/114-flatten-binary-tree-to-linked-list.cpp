@@ -11,22 +11,31 @@
  */
 class Solution {
 public:
-    void flatten(TreeNode* root) {
-        if(!root){
-            return;
-        }
-        auto left = root->left;
-        auto right = root->right;
-        root->left = NULL;
-        root->right = NULL;
-        flatten(left);
-        flatten(right);
-        root->right = left;
-        auto temp = root;
-        while(temp->right){
-            temp = temp->right;
-        }
-        temp->right = right;
+    pair<TreeNode*, TreeNode*> help(TreeNode* root){
+        if(!root || (!root->left && !root->right))return {root,root};
         
+        auto leftAns = help(root->left);
+        auto rightAns = help(root->right);
+        
+        root->left = NULL;
+        if(!rightAns.first){
+            root->right = leftAns.first;
+            return {root, leftAns.second};
+        }
+        
+        if(leftAns.first){
+            root->right = leftAns.first;
+            if(!leftAns.second){
+                cout << "not left second;";
+            }
+            leftAns.second->right = rightAns.first;
+        }else{
+            root->right = rightAns.first;   
+        }
+        
+        return {root, rightAns.second};
+    }
+    void flatten(TreeNode* root) {
+        root = help(root).first;
     }
 };
