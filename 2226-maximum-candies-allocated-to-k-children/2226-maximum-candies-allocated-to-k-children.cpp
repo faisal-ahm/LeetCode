@@ -4,14 +4,12 @@ public:
     long long sum = 0, n = candies.size();
     for(int i = 0; i < n; i++){
         sum += (long)candies[i];
-        cout << "hi1" << endl;
     }
 
     long long left = 0;
     long long right = sum/k;
     while(left < right){
 
-        cout << left << " " << right << endl;
         long long mid = (left + right + 1)/2;
         long long numKidsPossible = 0;
 
