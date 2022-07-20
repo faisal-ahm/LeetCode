@@ -1,9 +1,10 @@
 class Solution {
 public:
     int splitArray(vector<int>& nums, int m) {
-        int l = 0, r = 1e9, n = nums.size();
+        int l = 0, r = 0, n = nums.size();
         for(int x : nums){
             l = max(l, x);
+            r += x;
         }
         
         if(l==0)return 0;
