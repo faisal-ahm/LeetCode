@@ -2,7 +2,7 @@ class MyHashSet {
 public:
     
     vector<list<int>>m;
-    const static int size = 19997;
+    const static int size = 199;
     const static int mult = 12582917;
     
     MyHashSet(){
