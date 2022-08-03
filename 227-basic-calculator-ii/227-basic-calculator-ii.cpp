@@ -5,6 +5,7 @@ public:
         stack<char>st;
         string ans = "";
         for(char c : s){
+            if(c == ' ') continue;
             if(isdigit(c)){
                 ans+=c;
             }else{
@@ -44,7 +45,7 @@ public:
     }
 
     int calculate(string s) {
-        string t = topost2(s);
+        string t = topost(s);
         stack<int>num;
         int n = t.size();
         for(int i = 0; i < n; i++){
