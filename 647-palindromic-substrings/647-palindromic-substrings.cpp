@@ -5,11 +5,7 @@ public:
         vector<vector<bool>> pal(n, vector<bool>(n, true));
         for(int i = n-1; i >= 0; i--){
             for(int j = i+1; j < n; j++){
-                if(s[i] == s[j]){
-                    pal[i][j] = pal[i+1][j-1];
-                }else{
-                    pal[i][j] = false;
-                }
+                pal[i][j] = s[i] == s[j] && pal[i+1][j-1];
             }
         }
         return pal;
