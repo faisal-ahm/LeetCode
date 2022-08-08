@@ -10,7 +10,10 @@ public:
             }else if(c == '['){
                 i++;
                 string res = help(s,i);
-                for(; n > 0; n--)word+=res;
+                while(n){
+                    word += res;
+                    n--;
+                }
             }else if(isdigit(c)){
                 n = n*10 + c-'0';
             }else{
