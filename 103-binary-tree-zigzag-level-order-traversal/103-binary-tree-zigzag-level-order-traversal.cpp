@@ -11,38 +11,36 @@
  */
 class Solution {
 public:
-vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        
-        if (!root) return {};
-        
-        queue<TreeNode*> q;
-        vector<vector<int>> out;
-            
-        q.push(root);  
-        int level = 0; /* to alternate levels, or a bool variable */
-        
-        while (!q.empty()) {
-            
-            int sz = q.size();  
-            vector<int> curr(sz); 
-            
-            for (int i = 0; i < sz; i++) {
-                
-                TreeNode* tmp = q.front();
-                q.pop();
-                
-                if (level == 0) {
-                    curr[i] = tmp->val; 
-                } else {
-                    curr[sz - i - 1] = tmp->val; 
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        stack<TreeNode*> ms;
+        queue<TreeNode*> cs;
+        bool l2r = true;
+        vector<vector<int>>ans;
+        vector<int>level;
+        if(root) ms.push(root);
+        while(ms.size() || cs.size()){
+            if(!ms.size()){
+                ans.push_back(level);
+                level = {};
+                while(cs.size()){
+                    ms.push(cs.front());
+                    cs.pop();
                 }
-                
-                if (tmp->left) q.push(tmp->left);
-                if (tmp->right) q.push(tmp->right);
+                l2r = !l2r;
+            }else{
+                auto top = ms.top();
+                ms.pop();
+                level.push_back(top->val);
+                if(l2r){
+                    if(top->left) cs.push(top->left);
+                    if(top->right) cs.push(top->right);
+                }else{
+                    if(top->right) cs.push(top->right);
+                    if(top->left) cs.push(top->left);
+                }
             }
-            out.push_back(curr); // now push the level traversed to output vector
-            level = !level; // toggle the level using negation. or level == 0 ? level = 1 : level = 0;
         }
-        return out;
-}
+        if(level.size())ans.push_back(level);
+        return ans;
+    }
 };
