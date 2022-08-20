@@ -57,7 +57,6 @@ public:
                 q.push({i+1, j-1});
             }
         }
-        print(grid);
         return max(-1, grid[0][0]);
     }
 };
