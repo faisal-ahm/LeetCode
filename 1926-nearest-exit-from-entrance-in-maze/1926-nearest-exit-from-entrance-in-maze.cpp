@@ -33,7 +33,6 @@ public:
                 }
             }
         }
-        print(grid);
         while(q.size()){
             int i = q.front().first, j = q.front().second, val = grid[i][j];
             q.pop();
