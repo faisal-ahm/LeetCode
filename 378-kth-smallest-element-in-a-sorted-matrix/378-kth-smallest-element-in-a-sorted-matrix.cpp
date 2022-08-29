@@ -2,8 +2,8 @@ class Solution {
 public:
     int getRank(vector<vector<int>>& matrix, int& k){
         int ans = 0;
-        for(auto i : matrix){
-            for(int x : i){
+        for(auto& i : matrix){
+            for(int& x : i){
                 if(x <= k) ans++;
             }
         }
