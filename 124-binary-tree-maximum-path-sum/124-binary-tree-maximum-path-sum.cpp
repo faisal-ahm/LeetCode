@@ -12,7 +12,7 @@
 class Solution {
 public:
     int hlp(TreeNode* root, int& res){
-        if(!root) return NULL;
+        if(!root) return 0;
         int l = hlp(root->left, res);
         int r = hlp(root->right, res);
         int temp = max(max(l, r) + root->val, root->val);
